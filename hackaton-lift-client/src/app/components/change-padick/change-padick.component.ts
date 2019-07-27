@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { AddressType } from '../main/main.component';
 
 @Component({
   selector: 'app-change-padick',
@@ -7,6 +8,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangePadickComponent implements OnInit {
+  @Output() next: EventEmitter<AddressType> = new EventEmitter();
+
   public selectedItem: number;
 
   constructor() { }
@@ -15,8 +18,10 @@ export class ChangePadickComponent implements OnInit {
   }
 
   onSelected(num: number) {
-    debugger
     this.selectedItem = num;
   }
 
+  onNext(): void {
+
+  }
 }

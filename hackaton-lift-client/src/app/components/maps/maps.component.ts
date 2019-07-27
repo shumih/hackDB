@@ -53,18 +53,16 @@ export class MapsComponent implements OnInit, OnDestroy {
     });
 
     this.onInitMap.subscribe((e) => {
-      const location = ymaps.geolocation.get();
-      // Асинхронная обработка ответа.
-      location.then(
-        function(result) {
-          // Добавление местоположения на карту.
-          this.map.geoObjects.add(result.geoObjects);
-        },
-        function(err) {
-          console.log('Ошибка: ' + err);
-        }
-      );
-    })
+      // const location = ymaps.geolocation.get();
+      // location.then(
+      //   function(result) {
+      //     this.map.geoObjects.add(result.geoObjects);
+      //   },
+      //   function(err) {
+      //     console.log('Ошибка: ' + err);
+      //   }
+      // );
+    });
   }
 
   ngOnDestroy() {

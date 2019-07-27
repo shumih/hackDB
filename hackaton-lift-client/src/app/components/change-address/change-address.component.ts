@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { AddressType } from '../main/main.component';
 
 @Component({
   selector: 'app-change-address',
@@ -7,6 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeAddressComponent implements OnInit {
+  @Output() next: EventEmitter<AddressType> = new EventEmitter();
 
   constructor() { }
 
@@ -15,5 +17,9 @@ export class ChangeAddressComponent implements OnInit {
 
   public onFindGeo() {
 
+  }
+
+  onYes(): void {
+    this.next.emit(AddressType.Padick);
   }
 }

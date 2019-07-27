@@ -5,5 +5,5 @@
     <button mat-flat-button	type="button" (click)="onSelected(2)" [color]="selectedItem === 2 ? 'primary' : null">2</button>
     <button mat-flat-button	type="button" (click)="onSelected(3)" [color]="selectedItem === 3 ? 'primary' : null">3</button>
   </div>
-  <button mat-flat-button	class="accept-padick" type="button" [color]="selectedItem ? 'primary' : null">Далее</button>
+  <button mat-flat-button	class="accept-padick" type="button" [color]="selectedItem ? 'primary' : null" (click)="onNext()">Далее</button>
 </div>

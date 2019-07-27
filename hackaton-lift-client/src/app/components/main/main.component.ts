@@ -1,7 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, AfterViewInit } from '@angular/core';
 import { MapsData } from '@core/models/maps/maps-data.model';
 import { MapsComponent } from '../maps/maps.component';
-import { MapsMarker } from '@core/models/maps/maps-marker.model';
+
+export enum AddressType {
+  Question,
+  Padick,
+  Address
+}
 
 @Component({
   selector: 'app-main',
@@ -10,8 +15,11 @@ import { MapsMarker } from '@core/models/maps/maps-marker.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent implements OnInit, AfterViewInit {
+  public readonly AddressType = AddressType;
   private readonly START_POSITION_DEFAULT: [number, number] = [55.76, 37.64];
   private readonly ZOOM_DEFAULT = 5;
+
+  public currentType: AddressType = AddressType.Question;
 
   @ViewChild('maps', { static: false }) maps: MapsComponent;
 
@@ -33,5 +41,9 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.maps.setCenter([e.coords.latitude, e.coords.longitude], 18);
       });
     });
+  }
+
+  onNext(e: AddressType): void {
+    this.currentType = e;
   }
 }
