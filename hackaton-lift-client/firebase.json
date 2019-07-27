@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/hackaton-lift-client",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
