@@ -4,9 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// imports
+import { MatButtonModule } from '@angular/material/button';
+
 // components
 import { FeedbackComponent, ReportComponent } from './components';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, FeedbackComponent, ReportComponent],
