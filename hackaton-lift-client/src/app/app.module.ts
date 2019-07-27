@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 
 // components
 import { FeedbackComponent, ReportComponent } from './components';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, FeedbackComponent, ReportComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, MatButtonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

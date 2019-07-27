@@ -14,7 +14,6 @@ const routes: Routes = [
     path: 'report',
     component: ReportComponent,
     loadChildren: './modules/report/report.module#ReportModule',
-    canLoad: []
   },
 ];
 
