@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2, OnDestroy, Output,
 import { Subject, BehaviorSubject } from 'rxjs';
 import { debounceTime, filter, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { MapsSearchService } from '@core/services/maps/maps-search.service';
-import { ObjectHelper } from '@core/extensions/object-helper.extensions';
 import { MapsComponent } from '../maps.component';
 import { MapsGeoData } from '@core/models/maps/maps-geo-data.type';
 import { MapsGeo } from '@core/models/maps/maps-geo.type';
+import { ObjectHelper } from '@core/helpers/object-helper.extensions';
 declare var ymaps: any;
 
 @Component({

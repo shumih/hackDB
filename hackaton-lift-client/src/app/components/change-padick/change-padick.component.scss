@@ -1,0 +1,17 @@
+:host {
+  .check-address-container {
+    background-color: #F2F2F2;
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  .padick-numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 12px 0;
+  }
+  .accept-padick {
+    width: 100%;
+  }
+}

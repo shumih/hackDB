@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { MapsLoaderService } from '@core/services/maps/maps-loader.service';
 import { MapsData } from '@core/models/maps/maps-data.model';
 import { MapsMarker } from '@core/models/maps/maps-marker.model';
-import { Coordinates } from '@core/models/maps/maps-coordinates.type';
+
 declare var ymaps: any;
 
 @Component({
@@ -51,6 +51,20 @@ export class MapsComponent implements OnInit, OnDestroy {
       }],
       parent: this.data.injector || this._injector
     });
+
+    this.onInitMap.subscribe((e) => {
+      const location = ymaps.geolocation.get();
+      // Асинхронная обработка ответа.
+      location.then(
+        function(result) {
+          // Добавление местоположения на карту.
+          this.map.geoObjects.add(result.geoObjects);
+        },
+        function(err) {
+          console.log('Ошибка: ' + err);
+        }
+      );
+    })
   }
 
   ngOnDestroy() {
@@ -101,7 +115,7 @@ export class MapsComponent implements OnInit, OnDestroy {
     target.balloon.open(coords);
   }
 
-  public setCenter(coords: Coordinates, zoom: number): void {
+  public setCenter(coords: [number, number], zoom: number): void {
     this.map.setCenter(coords, zoom);
   }
 
@@ -110,7 +124,6 @@ export class MapsComponent implements OnInit, OnDestroy {
       ymaps.ready().done(() => {
         this.map = new ymaps.Map(el, mapOptions);
         this.onInitMap.next(this);
-        this.data.onInitialize.emit(this);
         this.map.events.add('boundschange', this._onBoundsChange.bind(this));
         this._onBoundsChange();
       });
@@ -178,6 +191,6 @@ export class MapsComponent implements OnInit, OnDestroy {
   }
 
   private _onBoundsChange(): void {
-    this.data.onChangeBounds.emit(this.map.getCenter());
+    // this.data.onChangeBounds.emit(this.map.getCenter());
   }
 }

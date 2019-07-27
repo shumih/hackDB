@@ -1,0 +1,16 @@
+:host {
+  .check-address-container {
+    background-color: #F2F2F2;
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  .check-address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .accept-address {
+    width: 100%;
+  }
+}
