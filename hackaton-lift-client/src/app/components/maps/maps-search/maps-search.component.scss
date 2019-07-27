@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 $size-button: 33px;
 $background-size-button: 65%;
@@ -52,7 +52,7 @@ $background-size-button: 65%;
         &:hover {
           background-color: $color-main--hover;
         }
-        &>div {
+        & > div {
           display: flex;
           height: 100%;
           justify-content: center;
@@ -71,7 +71,7 @@ $background-size-button: 65%;
         border-bottom: 1px $color-background-row-selected solid;
         padding: $space-s $space;
         cursor: pointer;
-        &>p {
+        & > p {
           font-weight: bold;
           margin: 0;
         }

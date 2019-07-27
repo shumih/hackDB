@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { StartComponent } from './components/start/start.component';
 import { SurveyAskComponent } from './components/survey-ask/survey-ask.component';
+import {ZXingScannerModule} from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SurveyAskComponent } from './components/survey-ask/survey-ask.component
     MatIconModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ZXingScannerModule
   ],
   providers: [MapsLoaderService, MapsSearchService],
   bootstrap: [AppComponent],

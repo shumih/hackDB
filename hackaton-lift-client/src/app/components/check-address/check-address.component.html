@@ -2,8 +2,11 @@
   <h2>Это Ваш адрес?</h2>
   <p>Берсеневская набережная, 6с3</p>
   <div class="button-panel">
-    <button mat-flat-button	 type="button" class="button-yes" color="primary" (click)="onYes()">Да</button>
-    <button mat-flat-button	 type="button" class="button-no" (click)="onNo()">Нет, другой</button>
-    <button mat-flat-button	 type="button" class="button-qr" color="primary" (click)="scanQr()">Сканировать QR-код</button>
+    <button mat-flat-button type="button" class="button-yes" color="primary" (click)="onYes()">Да</button>
+    <button mat-flat-button type="button" class="button-no" (click)="onNo()">Нет, другой</button>
+    <zxing-scanner *ngIf="isQRScanning" class="scan-screen" (scanSuccess)="handleScanEvent($event)"></zxing-scanner>
+    <button mat-flat-button type="button" class="button-qr" color="primary" (click)="handleScan()">
+      {{ isQRScanning ? 'Завершить сканирование' : 'Сканировать QR-код' }}
+    </button>
   </div>
 </div>

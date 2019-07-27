@@ -15,4 +15,8 @@
       grid-column: 1/3;
     }
   }
+
+  .scan-screen {
+    grid-column: span 2;
+  }
 }

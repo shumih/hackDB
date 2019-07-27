@@ -1,6 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { QrService } from '@core/services/qr.service';
-import { Step, CoreService } from '@core/services/core.service';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { CoreService } from '@core/services/core.service';
 
 @Component({
   selector: 'app-check-address',
@@ -8,10 +7,10 @@ import { Step, CoreService } from '@core/services/core.service';
   styleUrls: ['./check-address.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckAddressComponent implements OnInit {
-  constructor(private qrService: QrService, public service: CoreService) {}
+export class CheckAddressComponent {
+  constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {}
 
-  ngOnInit() {}
+  public isQRScanning = false;
 
   onYes(): void {
     this.service.selectStep('padick');
@@ -21,10 +20,32 @@ export class CheckAddressComponent implements OnInit {
     this.service.selectStep('address');
   }
 
-  scanQr(): void {
-    // TODO filter wrong data
-    this.qrService.scan().subscribe(event => {
-      debugger;
-    });
+  handleScanEvent(data: string): void {
+    try {
+      const info = JSON.parse(data);
+
+      if (this.isWrongData(info)) {
+        return;
+      }
+
+      this.setWithChangeDetection({ isQRScanning: false });
+      this.service.setAddressInfoInStorage(info);
+      this.service.selectStep('padick');
+    } catch (e) {
+      console.log('parse error');
+    }
+  }
+
+  handleScan(): void {
+    this.setWithChangeDetection({ isQRScanning: !this.isQRScanning });
+  }
+
+  public setWithChangeDetection(data: Partial<CheckAddressComponent>): void {
+    Object.assign(this, data);
+    this.cdRef.detectChanges();
+  }
+
+  private isWrongData(data: any): boolean {
+    return true;
   }
 }

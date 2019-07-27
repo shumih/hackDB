@@ -26,6 +26,7 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@zxing/ngx-scanner": "^2.0.1",
     "firebase": "^6.3.3",
     "rxfn": "^1.0.2",
     "rxjs": "~6.4.0",

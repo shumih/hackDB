@@ -20,6 +20,18 @@ export class CoreService {
     this.currentStepSubject.next(step);
   }
 
+  public setAddressInfoInStorage(info: {}): void {
+    localStorage.address = JSON.stringify(info);
+  }
+
+  public getAddressInfoFromStorage(): {} | null {
+    try {
+      return JSON.parse(localStorage.address);
+    } catch (e) {
+      return null;
+    }
+  }
+
   public sendInfoAboutProblem(info: any): Observable<unknown> {
     return this.http.post('', info);
   }
