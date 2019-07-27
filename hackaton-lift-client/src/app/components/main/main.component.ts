@@ -37,6 +37,11 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     navigator.geolocation.getCurrentPosition((e) => {
+      console.log(e);
+      if (this.maps.map) {
+        this.maps.setCenter([e.coords.latitude, e.coords.longitude], 18);
+        return;
+      }
       this.maps.onInitMap.subscribe(() => {
         this.maps.setCenter([e.coords.latitude, e.coords.longitude], 18);
       });
