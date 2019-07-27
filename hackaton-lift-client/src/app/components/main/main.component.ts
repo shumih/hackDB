@@ -1,25 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, AfterViewInit } from '@angular/core';
+import {Component, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnInit, ChangeDetectorRef, HostBinding} from '@angular/core';
 import { MapsData } from '@core/models/maps/maps-data.model';
 import { MapsComponent } from '../maps/maps.component';
-
-export enum AddressType {
-  Question,
-  Padick,
-  Address
-}
+import { Step, CoreService } from '@core/services/core.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, AfterViewInit {
-  public readonly AddressType = AddressType;
+  @HostBinding('class') public currentStep: Step = 'survey';
   private readonly START_POSITION_DEFAULT: [number, number] = [55.76, 37.64];
   private readonly ZOOM_DEFAULT = 5;
-
-  public currentType: AddressType = AddressType.Question;
 
   @ViewChild('maps', { static: false }) maps: MapsComponent;
 
@@ -28,16 +21,14 @@ export class MainComponent implements OnInit, AfterViewInit {
     zoom: this.ZOOM_DEFAULT,
   };
 
-  constructor() { }
+  constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {}
 
-  ngOnInit() {
-
+  ngOnInit(): void {
+    this.service.currentStep$.subscribe(currentStep => this.setWithChangeDetection({ currentStep }));
   }
 
-
   ngAfterViewInit() {
-    navigator.geolocation.getCurrentPosition((e) => {
-      console.log(e);
+    navigator.geolocation.getCurrentPosition(e => {
       if (this.maps.map) {
         this.maps.setCenter([e.coords.latitude, e.coords.longitude], 18);
         return;
@@ -48,7 +39,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onNext(e: AddressType): void {
-    this.currentType = e;
+  private setWithChangeDetection(data: Partial<MainComponent>): void {
+    Object.assign(this, data);
+    this.cdRef.detectChanges();
   }
 }

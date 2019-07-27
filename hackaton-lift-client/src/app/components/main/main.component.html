@@ -1,4 +1,7 @@
 <app-maps [data]="mapsData" #maps></app-maps>
-<app-check-address *ngIf="currentType === AddressType.Question" class="check-address-panel" (next)="onNext($event)"></app-check-address>
-<app-change-padick *ngIf="currentType === AddressType.Padick" class="check-change-padick" (next)="onNext($event)"></app-change-padick>
-<app-change-address *ngIf="currentType === AddressType.Address" class="check-change-address" (next)="onNext($event)"></app-change-address>
+<app-check-address *ngIf="currentStep === 'question'" class="_top-left"></app-check-address>
+<app-change-padick *ngIf="currentStep === 'padick'" class="_top-left"></app-change-padick>
+<app-change-address *ngIf="currentStep === 'address'" class="_top-left"></app-change-address>
+<app-problem *ngIf="currentStep === 'problem'" class="_center"></app-problem>
+<app-survey-ask *ngIf="currentStep === 'surveyquestion'" class="_center"></app-survey-ask>
+<app-survey *ngIf="currentStep === 'survey'" class="_center"></app-survey>

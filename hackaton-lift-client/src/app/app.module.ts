@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +20,12 @@ import { MapsSearchService } from './services/maps/maps-search.service';
 import { CheckAddressComponent } from './components/check-address/check-address.component';
 import { ChangeAddressComponent } from './components/change-address/change-address.component';
 import { ChangePadickComponent } from './components/change-padick/change-padick.component';
+import { ProblemComponent } from './components/problem/problem.component';
+import { SurveyComponent } from './components/survey/survey.component';
+import { HttpClientModule } from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import { StartComponent } from './components/start/start.component';
+import { SurveyAskComponent } from './components/survey-ask/survey-ask.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +37,23 @@ import { ChangePadickComponent } from './components/change-padick/change-padick.
     MapsComponent,
     CheckAddressComponent,
     ChangeAddressComponent,
-    ChangePadickComponent
+    ChangePadickComponent,
+    ProblemComponent,
+    SurveyComponent,
+    StartComponent,
+    SurveyAskComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatButtonModule, MatInputModule, MatIconModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
   providers: [MapsLoaderService, MapsSearchService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

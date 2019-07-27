@@ -1,27 +1,22 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { AddressType } from '../main/main.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CoreService } from '@core/services/core.service';
 
 @Component({
   selector: 'app-change-padick',
   templateUrl: './change-padick.component.html',
   styleUrls: ['./change-padick.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChangePadickComponent implements OnInit {
-  @Output() next: EventEmitter<AddressType> = new EventEmitter();
-
+export class ChangePadickComponent {
   public selectedItem: number;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor(public service: CoreService) {}
 
   onSelected(num: number) {
     this.selectedItem = num;
   }
 
   onNext(): void {
-
+    this.service.selectStep('problem');
   }
 }

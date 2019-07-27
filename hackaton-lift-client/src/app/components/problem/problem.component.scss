@@ -1,0 +1,17 @@
+:host {
+  .problem-container {
+    background-color: #F2F2F2;
+    padding: 20px;
+    width: 80vw;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .button-panel {
+    display: flex;
+    flex-direction: column;
+
+    .row {
+      margin-bottom: 1em;
+    }
+  }
+}

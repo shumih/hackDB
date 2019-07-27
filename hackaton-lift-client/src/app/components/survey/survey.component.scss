@@ -1,0 +1,23 @@
+:host {
+  .survey-container {
+    background-color: #F2F2F2;
+    padding: 20px;
+    width: 100%;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .row {
+      margin-bottom: 1em;
+    }
+  }
+
+}

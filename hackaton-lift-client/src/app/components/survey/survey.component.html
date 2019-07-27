@@ -1,0 +1,33 @@
+<div class="survey-container">
+  <h2>{{ surveyService.survey[surveyStep].question }}</h2>
+  <form
+    *ngIf="surveyService.surveyForm.controls[surveyStep] as formGroup"
+    class="form"
+    [formGroup]="formGroup"
+    (submit)="onSubmit()"
+  >
+    <ng-container *ngFor="let answer of surveyService.survey[surveyStep].answers; let i = index">
+      <button
+        mat-flat-button
+        type="button"
+        class="row"
+        [color]="formGroup.get('answer').value === answer.value ? 'primary' : null"
+        (click)="formGroup.patchValue({ answer: answer.value })"
+      >
+        {{ answer.text }}
+      </button>
+    </ng-container>
+
+    <textarea matInput class="row" placeholder="Добавить комментарий"></textarea>
+
+    <button
+      mat-flat-button
+      type="submit"
+      [color]="formGroup.valid ? 'primary' : null"
+      [disabled]="formGroup.invalid"
+      class="row"
+    >
+      Далее
+    </button>
+  </form>
+</div>

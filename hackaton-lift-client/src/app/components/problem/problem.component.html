@@ -1,0 +1,53 @@
+<div class="problem-container">
+  <h2>Сообщить о проблеме</h2>
+  <div class="button-panel">
+    <button
+      mat-flat-button
+      type="button"
+      class="row"
+      (click)="onSelected(1)"
+      [color]="selectedItem === 1 ? 'primary' : null"
+    >
+      Не работает лифт
+    </button>
+    <button
+      mat-flat-button
+      type="button"
+      class="row"
+      (click)="onSelected(2)"
+      [color]="selectedItem === 2 ? 'primary' : null"
+    >
+      В лифте грязно
+    </button>
+    <button
+      mat-flat-button
+      type="button"
+      class="row"
+      (click)="onSelected(3)"
+      [color]="selectedItem === 3 ? 'primary' : null"
+    >
+      В лифте нет света
+    </button>
+    <button
+      mat-flat-button
+      type="button"
+      class="row"
+      (click)="onSelected(4)"
+      [color]="selectedItem === 4 ? 'primary' : null"
+    >
+      Другое
+    </button>
+    <textarea matInput class="row" placeholder="Добавить комментарий"></textarea>
+
+    <button
+      mat-flat-button
+      type="submit"
+      class="row"
+      [disabled]="!selectedItem"
+      [color]="selectedItem !== 0 ? 'primary' : null"
+      (click)="onNext()"
+    >
+      {{ selectedItem ? 'Готово' : 'Дальше' }}
+    </button>
+  </div>
+</div>

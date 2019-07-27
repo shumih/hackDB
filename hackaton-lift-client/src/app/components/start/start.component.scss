@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-top: 50%;
+    width: 146px;
+    height: 146px;
+    margin-bottom: 2em;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}

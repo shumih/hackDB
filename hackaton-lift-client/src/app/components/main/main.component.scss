@@ -1,20 +1,37 @@
 :host {
-  .check-address-panel {
+  &.problem,
+  &.survey,
+  &.surveyquestion {
+    &:after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+
+      display: block;
+      background-color: transparentize(grey, 0.3);
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      filter: blur(5px);
+    }
+  }
+
+  ._top-left {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1000;
   }
-  .check-change-padick {
+
+  ._center {
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
-  .check-change-address {
-    position: absolute;
-    top: 0;
-    left: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
     z-index: 1000;
   }
 }
