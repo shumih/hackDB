@@ -10,7 +10,7 @@ import { Step, CoreService } from '@core/services/core.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, AfterViewInit {
-  @HostBinding('class') public currentStep: Step = 'survey';
+  @HostBinding('class') public currentStep: Step = 'question';
   private readonly START_POSITION_DEFAULT: [number, number] = [55.76, 37.64];
   private readonly ZOOM_DEFAULT = 5;
 
