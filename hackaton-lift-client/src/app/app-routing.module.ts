@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // components
 import {FeedbackComponent, ReportComponent} from './components';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
     component: ReportComponent,
     loadChildren: './modules/report/report.module#ReportModule',
   },
+  {
+    path: 'main',
+    component: MainComponent,
+    loadChildren: './modules/main/main.module#MainModule'
+  }
 ];
 
 @NgModule({

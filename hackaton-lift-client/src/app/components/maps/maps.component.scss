@@ -1,0 +1,24 @@
+
+:host {
+  .maps {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    // & app-maps-search {
+    //   // width: $width-maps-search;
+    //   // max-height: $height-maps-search;
+    //   position: absolute;
+    //   top: $space;
+    //   left: $space;
+    //   z-index: $index-z-l;
+    // }
+
+    & .map-container {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+

@@ -9,9 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 
 // components
 import { FeedbackComponent, ReportComponent } from './components';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
-  declarations: [AppComponent, FeedbackComponent, ReportComponent],
+  declarations: [AppComponent, FeedbackComponent, ReportComponent, LoginComponent, MainComponent],
   imports: [BrowserModule, AppRoutingModule, MatButtonModule],
   providers: [],
   bootstrap: [AppComponent],

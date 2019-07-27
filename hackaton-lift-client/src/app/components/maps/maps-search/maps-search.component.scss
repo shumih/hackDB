@@ -1,0 +1,87 @@
+@import "variables";
+
+$size-button: 33px;
+$background-size-button: 65%;
+
+:host {
+  display: flex;
+  .search-button {
+    width: $size-button;
+    height: $size-button;
+    border-radius: 100%;
+    background-color: white;
+    outline: none;
+    box-shadow: $box-shadow-popup;
+    margin-right: $space;
+    cursor: pointer;
+  }
+
+  .search-container {
+    width: calc(100% - $space - $size-button);
+    height: auto;
+    box-shadow: $box-shadow-popup;
+    border-radius: $border-radius;
+    background-color: $color-background-block;
+    max-height: 100%;
+    flex-direction: column;
+    display: flex;
+    overflow: hidden;
+    &[hidden] {
+      display: none;
+    }
+    & app-search-panel ::ng-deep app-data-line {
+      border: none;
+      border-bottom: 1px solid $color-border-element;
+      border-radius: 0;
+    }
+    & .search-content {
+      overflow: auto;
+      & .search-empty {
+        padding: $space-s $space;
+      }
+      & .search-more {
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        cursor: pointer;
+        color: $color-text;
+        background-color: $color-main;
+        height: $space-l;
+        outline: none;
+        &:hover {
+          background-color: $color-main--hover;
+        }
+        &>div {
+          display: flex;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+          &.spinner.spinner-active:before {
+            height: 100%;
+            top: 0;
+            background-position: center;
+          }
+          &.spinner.spinner-active:after {
+            background-color: $color-background-block;
+          }
+        }
+      }
+      & .search-item {
+        border-bottom: 1px $color-background-row-selected solid;
+        padding: $space-s $space;
+        cursor: pointer;
+        &>p {
+          font-weight: bold;
+          margin: 0;
+        }
+        &:hover {
+          background-color: $color-background-row--hover;
+        }
+        &.selected {
+          background-color: $color-background-row-selected;
+        }
+      }
+    }
+  }
+}

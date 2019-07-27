@@ -1,0 +1,38 @@
+<button class="search-button" (click)="onClickButton()"
+>
+  <app-svg-icon
+    iconHeight="33px"
+    iconWidth="20px"
+    [icon]="openPanel ? 'expander' : 'search'"
+    stroke="#646464"></app-svg-icon>
+</button>
+<div
+  [hidden]="!openPanel"
+  class="search-container"
+>
+  <app-search-panel
+    placeholder="Адрес или объект"
+    [(value)]="searchValue"
+    (valueChange)="onChangeSearch($event)"
+    fieldName="search"
+    (clearValue)="onClearSearch()"
+    [isLoading]="searchLoader$ | async"
+  ></app-search-panel>
+  <div #searchContent class="search-content" (scroll)="onScroll($event)">
+    <div
+      *ngFor="let item of result"
+      class="search-item {{ item.selected ? 'selected' : '' }}"
+      (click)="onSelectItem(item)"
+    >
+      <p>{{ item.name }}</p>
+      <span>{{ item.text }}</span>
+    </div>
+    <div class="search-empty" *ngIf="result && !result.length">Указанный адрес не найден</div>
+    <button
+      #searchMore
+      class="search-more"
+      *ngIf="isMore"
+      (click)="onClickMore()"
+    ><div *appLoader="moreLoader$">Ещё</div></button>
+  </div>
+</div>
