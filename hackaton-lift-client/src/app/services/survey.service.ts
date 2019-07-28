@@ -157,7 +157,9 @@ export class SurveyService {
   ];
 
   public surveyForm: FormArray = this.fb.array(
-    this.survey.map((item, i) => this.fb.group({ questionId: i, answer: [null, Validators.required] }))
+    this.survey.map((item, i) =>
+      this.fb.group({ questionId: i, answer: [null, control => (control.value == null ? { required: true } : null)] })
+    )
   );
 
   constructor(private fb: FormBuilder) {}
