@@ -1,4 +1,5 @@
 <div class="survey-container">
+  <p>{{ (surveyStep + 1) }} / {{ surveyService.survey.length }}</p>
   <h2>{{ surveyService.survey[surveyStep].question }}</h2>
   <form
     *ngIf="surveyService.surveyForm.controls[surveyStep] as formGroup"
