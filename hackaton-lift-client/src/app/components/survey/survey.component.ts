@@ -18,15 +18,15 @@ export class SurveyComponent {
   ) {}
 
   onSubmit(): void {
-    if (this.surveyStep >= this.surveyService.survey.length) {
+    this.setWithChangeDetection({ surveyStep: this.surveyStep + 1 });
+
+    if (this.surveyService.survey.length <= this.surveyStep) {
       this.coreService.addSurveyResult(this.surveyService.surveyForm.value);
 
       setTimeout(() => {
         this.coreService.selectStep('question');
       }, 1500);
     }
-
-    this.setWithChangeDetection({ surveyStep: this.surveyStep + 1 });
   }
 
   public setWithChangeDetection(data: Partial<SurveyComponent>): void {
