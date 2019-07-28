@@ -10,7 +10,6 @@ import {
 import { MapsData } from '@core/models/maps/maps-data.model';
 import { MapsComponent } from '../maps/maps.component';
 import { Step, CoreService } from '@core/services/core.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-main',

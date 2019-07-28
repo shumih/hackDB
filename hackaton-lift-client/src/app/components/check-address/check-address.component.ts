@@ -12,6 +12,7 @@ export class CheckAddressComponent {
   constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {}
 
   public isQRScanning = false;
+  public address = 'Берсеневская набережная, 6с3';
 
   onYes(): void {
     this.addressIsOk.emit();
@@ -24,14 +25,12 @@ export class CheckAddressComponent {
 
   handleScanEvent(data: string): void {
     try {
-      const info = JSON.parse(data);
-
-      if (this.isWrongData(info)) {
+      if (this.isWrongData(data)) {
         return;
       }
 
-      this.setWithChangeDetection({ isQRScanning: false });
-      this.service.addressInfo = info;
+      this.setWithChangeDetection({ isQRScanning: false, address: data });
+      this.service.addressInfo = data;
       this.service.sendAddressInfoInStorage();
       this.service.selectStep('problem');
     } catch (e) {
@@ -49,6 +48,6 @@ export class CheckAddressComponent {
   }
 
   private isWrongData(data: any): boolean {
-    return true;
+    return typeof data !== 'string';
   }
 }

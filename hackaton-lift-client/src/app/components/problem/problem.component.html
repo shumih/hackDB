@@ -43,7 +43,7 @@
       mat-flat-button
       type="submit"
       class="row"
-      [disabled]="!selectedItem"
+      [disabled]="selectedItem == null"
       [color]="selectedItem != null ? 'primary' : null"
       (click)="onNext(comment.value)"
     >
