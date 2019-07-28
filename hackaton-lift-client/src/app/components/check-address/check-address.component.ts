@@ -14,6 +14,7 @@ export class CheckAddressComponent {
   public isQRScanning = false;
 
   onYes(): void {
+    this.addressIsOk.emit();
     this.service.selectStep('padick');
   }
 
