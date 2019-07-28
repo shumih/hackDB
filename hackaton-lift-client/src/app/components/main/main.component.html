@@ -1,5 +1,5 @@
 <app-maps [data]="mapsData" #maps></app-maps>
-<app-check-address *ngIf="currentStep === 'question'" class="_bottom"></app-check-address>
+<app-check-address *ngIf="currentStep === 'question'" class="_bottom" (addressIsOk)="updateAddress()"></app-check-address>
 <app-change-padick *ngIf="currentStep === 'padick'" class="_bottom"></app-change-padick>
 <app-change-address *ngIf="currentStep === 'address'" class="_bottom"></app-change-address>
 <app-problem *ngIf="currentStep === 'problem'" class="_center"></app-problem>

@@ -39,6 +39,12 @@ export class MainComponent implements OnInit, AfterViewInit {
     });
   }
 
+  updateAddress() {
+    const data = this.maps.data;
+    debugger
+    Object.assign(this.service.addressInfo, {  })
+  }
+
   private setWithChangeDetection(data: Partial<MainComponent>): void {
     Object.assign(this, data);
     this.cdRef.detectChanges();

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { CoreService } from '@core/services/core.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { CoreService } from '@core/services/core.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckAddressComponent {
+  @Output() addressIsOk: EventEmitter<void> = new EventEmitter();
   constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {}
 
   public isQRScanning = false;
@@ -29,8 +30,9 @@ export class CheckAddressComponent {
       }
 
       this.setWithChangeDetection({ isQRScanning: false });
-      this.service.setAddressInfoInStorage(info);
-      this.service.selectStep('padick');
+      this.service.addressInfo = info;
+      this.service.sendAddressInfoInStorage();
+      this.service.selectStep('problem');
     } catch (e) {
       console.log('parse error');
     }

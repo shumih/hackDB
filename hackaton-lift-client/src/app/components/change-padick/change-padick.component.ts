@@ -17,6 +17,8 @@ export class ChangePadickComponent {
   }
 
   onNext(): void {
+    this.service.addressInfo.padick = this.selectedItem;
+    this.service.sendAddressInfoInStorage()
     this.service.selectStep('problem');
   }
 }
