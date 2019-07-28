@@ -10,6 +10,7 @@ import {
 import { MapsData } from '@core/models/maps/maps-data.model';
 import { MapsComponent } from '../maps/maps.component';
 import { Step, CoreService } from '@core/services/core.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-main',
@@ -56,6 +57,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     debugger;
     Object.assign(this.service.addressInfo, {});
   }
+
 
   private setWithChangeDetection(data: Partial<MainComponent>): void {
     Object.assign(this, data);

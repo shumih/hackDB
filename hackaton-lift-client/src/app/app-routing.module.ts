@@ -8,11 +8,11 @@ import { StartComponent } from '@core/components/start/start.component';
 const routes: Routes = [
   {
     path: '',
-    component: StartComponent,
+    component: MainComponent,
   },
   {
-    path: 'main',
-    component: MainComponent,
+    path: 'start',
+    component: StartComponent,
   },
 ];
 

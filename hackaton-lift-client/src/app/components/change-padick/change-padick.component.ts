@@ -8,7 +8,8 @@ import { CoreService } from '@core/services/core.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangePadickComponent {
-  public selectedItem: number;
+  public info = this.service.getAddressInfoFromStorage();
+  public selectedItem: number = this.info && this.info.padick;
 
   constructor(public service: CoreService) {}
 
@@ -18,7 +19,7 @@ export class ChangePadickComponent {
 
   onNext(): void {
     this.service.addressInfo.padick = this.selectedItem;
-    this.service.sendAddressInfoInStorage()
+    this.service.sendAddressInfoInStorage();
     this.service.selectStep('problem');
   }
 }

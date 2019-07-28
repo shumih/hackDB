@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CoreService } from '@core/services/core.service';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-problem',
@@ -9,19 +8,21 @@ import { FormBuilder } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProblemComponent implements OnInit {
-  public form = this.fb.group({});
-  public selectedItem = 0;
+  public answer: string;
+  public answers = ['Не работает лифт', 'В лифте грязно', 'В лифте нет света', 'Другое'];
+  public selectedItem = null;
 
-  constructor(public service: CoreService, private fb: FormBuilder) {}
+  constructor(public service: CoreService) {}
 
   ngOnInit() {}
 
   onSelected(num: number) {
+    this.answer = this.answers[num];
     this.selectedItem = num;
   }
 
-  onNext(): void {
-    this.service.selectStep('surveyquestion')
-    // this.service.sendInfoAboutProblem(this.form.value).subscribe(() => this.service.selectStep('surveyquestion'));
+  onNext(comment): void {
+    this.service.sendInfoAboutProblem({ comment, answer: this.answer });
+    this.service.selectStep('surveyquestion');
   }
 }

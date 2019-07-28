@@ -22,9 +22,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StartComponent } from './components/start/start.component';
 import { SurveyAskComponent } from './components/survey-ask/survey-ask.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { AngularFireModule } from '@angular/fire';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '@env';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ZXingScannerModule,
     AngularFireModule.initializeApp(environment.firebase, 'hackaton-lift-client'),
     AngularFirestoreModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    AngularFireStorageModule,
+    AngularFireAuthModule
   ],
   providers: [MapsLoaderService, MapsSearchService],
   bootstrap: [AppComponent],

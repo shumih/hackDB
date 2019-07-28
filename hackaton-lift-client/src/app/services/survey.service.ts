@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { FormArray, FormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -113,6 +112,28 @@ export class SurveyService {
       ],
     },
     {
+      question: 'Бывало ли во время поездки в лифте',
+      answers: [
+        {
+          text: 'Сильные шумы',
+          value: -1,
+        },
+        {
+          text: 'Вибрация',
+          value: -2,
+        },
+        {
+          text: 'Рывки',
+          value: -3,
+        },
+        {
+          text: 'Ничего из вышеперечисленного',
+          value: 0,
+        },
+      ],
+    },
+
+    {
       question: 'Опишите состояние цифрового табло',
       answers: [
         {
@@ -129,7 +150,7 @@ export class SurveyService {
         },
         {
           text: 'В моем лифте нет цифрового табло',
-          value: null,
+          value: 0,
         },
       ],
     },
@@ -150,7 +171,7 @@ export class SurveyService {
         },
         {
           text: 'В моём лифте нет цифрового табло',
-          value: null,
+          value: 0,
         },
       ],
     },
@@ -158,7 +179,7 @@ export class SurveyService {
 
   public surveyForm: FormArray = this.fb.array(
     this.survey.map((item, i) =>
-      this.fb.group({ questionId: i, answer: [null, control => (control.value == null ? { required: true } : null)] })
+      this.fb.group({ question_id: i, answer: [null, control => (control.value == null ? { required: true } : null)] })
     )
   );
 

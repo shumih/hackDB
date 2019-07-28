@@ -5,10 +5,19 @@
       mat-flat-button
       type="button"
       class="row"
+      (click)="onSelected(0)"
+      [color]="selectedItem === 0 ? 'primary' : null"
+    >
+      {{ answers[0] }}
+    </button>
+    <button
+      mat-flat-button
+      type="button"
+      class="row"
       (click)="onSelected(1)"
       [color]="selectedItem === 1 ? 'primary' : null"
     >
-      Не работает лифт
+      {{ answers[1] }}
     </button>
     <button
       mat-flat-button
@@ -17,7 +26,7 @@
       (click)="onSelected(2)"
       [color]="selectedItem === 2 ? 'primary' : null"
     >
-      В лифте грязно
+      {{ answers[2] }}
     </button>
     <button
       mat-flat-button
@@ -26,26 +35,17 @@
       (click)="onSelected(3)"
       [color]="selectedItem === 3 ? 'primary' : null"
     >
-      В лифте нет света
+      {{ answers[3] }}
     </button>
-    <button
-      mat-flat-button
-      type="button"
-      class="row"
-      (click)="onSelected(4)"
-      [color]="selectedItem === 4 ? 'primary' : null"
-    >
-      Другое
-    </button>
-    <textarea matInput class="row" placeholder="Добавить комментарий"></textarea>
+    <textarea #comment matInput class="row" placeholder="Добавить комментарий"></textarea>
 
     <button
       mat-flat-button
       type="submit"
       class="row"
       [disabled]="!selectedItem"
-      [color]="selectedItem !== 0 ? 'primary' : null"
-      (click)="onNext()"
+      [color]="selectedItem != null ? 'primary' : null"
+      (click)="onNext(comment.value)"
     >
       {{ selectedItem ? 'Готово' : 'Дальше' }}
     </button>
