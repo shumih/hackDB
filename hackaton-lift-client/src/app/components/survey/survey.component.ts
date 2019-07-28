@@ -20,7 +20,7 @@ export class SurveyComponent {
   onSubmit(): void {
     if (this.surveyStep >= this.surveyService.survey.length) {
       this.coreService.addSurveyResult(this.surveyService.surveyForm.value);
-    } else {
+
       setTimeout(() => {
         this.coreService.selectStep('question');
       }, 1500);
