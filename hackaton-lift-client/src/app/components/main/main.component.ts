@@ -1,4 +1,12 @@
-import {Component, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnInit, ChangeDetectorRef, HostBinding} from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewChild,
+  AfterViewInit,
+  OnInit,
+  ChangeDetectorRef,
+  HostBinding,
+} from '@angular/core';
 import { MapsData } from '@core/models/maps/maps-data.model';
 import { MapsComponent } from '../maps/maps.component';
 import { Step, CoreService } from '@core/services/core.service';
@@ -16,12 +24,16 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   @ViewChild('maps', { static: false }) maps: MapsComponent;
 
-  mapsData: MapsData = {
-    startPosition: this.START_POSITION_DEFAULT,
-    zoom: this.ZOOM_DEFAULT,
-  };
+  mapsData: MapsData;
 
-  constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {}
+  constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {
+    const info = this.service.getAddressInfoFromStorage();
+
+    this.mapsData = {
+      startPosition: info ? [info.longitude, info.latitide] : this.START_POSITION_DEFAULT,
+      zoom: this.ZOOM_DEFAULT,
+    };
+  }
 
   ngOnInit(): void {
     this.service.currentStep$.subscribe(currentStep => this.setWithChangeDetection({ currentStep }));
@@ -41,8 +53,8 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   updateAddress() {
     const data = this.maps.data;
-    debugger
-    Object.assign(this.service.addressInfo, {  })
+    debugger;
+    Object.assign(this.service.addressInfo, {});
   }
 
   private setWithChangeDetection(data: Partial<MainComponent>): void {

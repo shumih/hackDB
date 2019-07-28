@@ -17,6 +17,7 @@ export class CoreService {
 
   private currentStepSubject: Subject<Step> = new Subject();
   private problemCollection = this.store.collection('problems');
+  private surveyResultCollection = this.store.collection('surveys');
 
   constructor(private http: HttpClient, private store: AngularFirestore) {}
 
@@ -28,11 +29,15 @@ export class CoreService {
     localStorage.setItem('address', JSON.stringify(this.addressInfo));
   }
 
-  public getAddressInfoFromStorage(): Observable<unknown> {
+  public getAddressInfoFromStorage(): any {
     return JSON.parse(localStorage.getItem('address'));
   }
 
   public sendInfoAboutProblem(info: any): Observable<unknown> {
     return fromPromise(this.problemCollection.add(info));
+  }
+
+  public addSurveyResult(result: any): Observable<unknown> {
+    return fromPromise(this.surveyResultCollection.add(result));
   }
 }

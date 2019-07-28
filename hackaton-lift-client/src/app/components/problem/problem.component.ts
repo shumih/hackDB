@@ -21,7 +21,6 @@ export class ProblemComponent implements OnInit {
   }
 
   onNext(): void {
-    this.service.selectStep('surveyquestion');
-    // this.service.sendInfoAboutProblem(this.form.value).subscribe(() => this.service.selectStep('surveyquestion'));
+    this.service.sendInfoAboutProblem(this.form.value).subscribe(() => this.service.selectStep('surveyquestion'));
   }
 }

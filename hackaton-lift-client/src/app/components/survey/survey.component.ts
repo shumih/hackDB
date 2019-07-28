@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SurveyService } from '@core/services/survey.service';
+import { CoreService } from '@core/services/core.service';
 
 @Component({
   selector: 'app-survey',
@@ -10,14 +11,18 @@ import { SurveyService } from '@core/services/survey.service';
 export class SurveyComponent {
   public surveyStep = 0;
 
-  constructor(public surveyService: SurveyService, private cdRef: ChangeDetectorRef) {}
+  constructor(
+    public surveyService: SurveyService,
+    private coreService: CoreService,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   onSubmit(): void {
     if (this.surveyService.survey.length !== this.surveyStep) {
       this.setWithChangeDetection({ surveyStep: this.surveyStep + 1 });
     }
 
-    // TODO: send result
+    this.coreService.addSurveyResult(this.surveyService.surveyForm.value);
   }
 
   public setWithChangeDetection(data: Partial<SurveyComponent>): void {
