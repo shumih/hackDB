@@ -18,7 +18,9 @@ export class ChangePadickComponent {
   }
 
   onNext(): void {
-    this.service.addressInfo += `подъезд ${this.selectedItem}`;
+    if (!this.service.addressInfo.includes('подъезд')) {
+      this.service.addressInfo += ` подъезд ${this.selectedItem}`;
+    }
     this.service.sendAddressInfoInStorage();
     this.service.selectStep('problem');
   }

@@ -22,7 +22,7 @@ export class ProblemComponent implements OnInit {
   }
 
   onNext(comment): void {
-    this.service.sendInfoAboutProblem({ comment, answer: this.answer });
+    this.service.sendInfoAboutProblem({ comment, answer: this.answer, address: this.service.addressInfo });
     this.service.selectStep('surveyquestion');
   }
 }

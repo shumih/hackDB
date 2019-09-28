@@ -12,7 +12,6 @@ export class CheckAddressComponent {
   constructor(public service: CoreService, private cdRef: ChangeDetectorRef) {}
 
   public isQRScanning = false;
-  public address = 'Берсеневская набережная, 6с3';
 
   onYes(): void {
     this.addressIsOk.emit();
@@ -29,7 +28,7 @@ export class CheckAddressComponent {
         return;
       }
 
-      this.setWithChangeDetection({ isQRScanning: false, address: data });
+      this.setWithChangeDetection({ isQRScanning: false  });
       this.service.addressInfo = data;
       this.service.sendAddressInfoInStorage();
       this.service.selectStep('problem');

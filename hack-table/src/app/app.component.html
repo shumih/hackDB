@@ -1,26 +1,66 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="wrapper">
+  <div class="buttons" *ngIf="details">
+    <button mat-flat-button (click)="navigateToTable()">Назад</button>
+  </div>
 
+  <table *ngIf="!details" mat-table [dataSource]="data$ | async" class="mat-elevation-z8 table">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Адрес</th>
+      <td mat-cell *matCellDef="let item">{{ item.address }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Ответ</th>
+      <td mat-cell *matCellDef="let item">{{ item.title }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Вес</th>
+      <td mat-cell *matCellDef="let item">{{ item.weight }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetails(row)"></tr>
+  </table>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <div *ngIf="details" class="list">
+    <mat-list>
+      <mat-list-item>
+        <p class="label">Адрес:</p>
+        <p class="value">{{ details.address }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="label">Подъезд:</p>
+        <p class="value">{{ getPadick(details.address) }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="label">Застреваний за последний месяц:</p>
+        <p class="value">{{ getStucks() }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="label">Количество прошедших опрос:</p>
+        <p class="value">7</p>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="label">Переходы по QR:</p>
+        <p class="value">3</p>
+      </mat-list-item>
+      <mat-list-item *ngFor="let value of details.questions; let i = index">
+        <p class="label">{{ mapQuestionToTitle[i] }}</p>
+        <p class="value">{{ getAnswerTitle(i, value) }}</p>
+      </mat-list-item>
+    </mat-list>
+
+    <svg width="446" height="497" viewBox="0 0 446 497" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M247.102 1.61206C205.171 1.84951 163.991 12.7627 127.445 33.3227C90.8993 53.8826 60.1923 83.4118 38.2195 119.126C16.2466 154.84 3.73189 195.562 1.85543 237.452C-0.0210368 279.342 8.80257 321.019 27.4942 358.555C46.1859 396.09 74.1297 428.247 108.691 451.992C143.252 475.737 183.291 490.289 225.033 494.274C266.775 498.26 308.845 491.548 347.275 474.772C385.705 457.997 419.229 431.709 444.686 398.389L248.5 248.5L247.102 1.61206Z"
+        fill="#2EE34B"
+      />
+    </svg>
+  </div>
+</div>

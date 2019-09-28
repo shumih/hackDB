@@ -12,7 +12,7 @@ export type Step = 'question' | 'padick' | 'address' | 'problem' | 'surveyquesti
 })
 export class CoreService {
   public currentStep$: Observable<Step> = forwardTo(() => this.currentStepSubject).pipe(shareReplay(1));
-  public addressInfo: any = {};
+  public addressInfo = '';
   public userId = this.getUserId();
 
   private currentStepSubject: Subject<Step> = new Subject();

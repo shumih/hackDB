@@ -1,0 +1,32 @@
+:host {
+  height: 100%;
+  width: 100%;
+
+  .wrapper {
+    display: flex;
+    margin: 32px;
+  }
+
+  .list {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .table {
+    flex: 1;
+  }
+
+  .buttons {
+  }
+
+  .label {
+    margin: 0;
+    color: #4b4848;
+  }
+
+  .value {
+    margin-left: 2em;
+  }
+}
